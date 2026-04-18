@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Dataset (too large for git)
+Chest_X-Ray_Images_archive/
+archive/
+
+# Trained models (too large for GitHub)
+results_xray/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.sw?
+
+# Logs
+*.log
