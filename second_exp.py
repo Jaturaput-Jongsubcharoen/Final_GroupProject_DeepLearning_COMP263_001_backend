@@ -17,11 +17,30 @@ if gpus:
     for gpu in gpus:
         tf.config.experimental.set_memory_growth(gpu, True)
 
-BASE_PATH = os.getcwd()
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 
-# ✅ Using same Chest X-Ray dataset as Exp1 and Exp3
-FULL_TRAIN_DIR = os.path.join(BASE_PATH, 'archive', 'chest_xray', 'train')
-TEST_DIR = os.path.join(BASE_PATH, 'archive', 'chest_xray', 'test')
+def _resolve_dataset_root():
+    """Find chest_xray dataset root from common project locations."""
+    candidates = [
+        os.path.join(BASE_PATH, 'archive', 'chest_xray'),
+        os.path.join(BASE_PATH, '..', 'dataset', 'Chest_X-Ray_Images_archive', 'chest_xray', 'chest_xray'),
+        os.path.join(BASE_PATH, '..', 'dataset', 'Chest_X-Ray_Images_archive', 'chest_xray'),
+    ]
+    checked = []
+    for path in candidates:
+        normalized = os.path.abspath(path)
+        checked.append(normalized)
+        if os.path.isdir(os.path.join(normalized, 'train')) and os.path.isdir(os.path.join(normalized, 'test')):
+            return normalized
+    raise FileNotFoundError(
+        "Could not find chest_xray dataset. Expected folders 'train' and 'test' under one of:\n"
+        + "\n".join(checked)
+    )
+
+# Using same Chest X-Ray dataset as Exp1 and Exp3
+DATASET_ROOT = _resolve_dataset_root()
+FULL_TRAIN_DIR = os.path.join(DATASET_ROOT, 'train')
+TEST_DIR = os.path.join(DATASET_ROOT, 'test')
 
 RESULTS_DIR = os.path.join(BASE_PATH, 'results_xray', 'exp2_autoencoder')
 os.makedirs(RESULTS_DIR, exist_ok=True)
