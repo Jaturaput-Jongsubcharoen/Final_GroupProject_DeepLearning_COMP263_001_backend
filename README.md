@@ -18,13 +18,13 @@
 ---
 ## Project Description
 
-This project applies deep learning to classify chest X-ray images as **Normal** or **Pneumonia**. Three experiments are conducted:
+In this project, we use deep learning to predict whether a chest X-ray image is of a Normal or Pneumonia case. There are three experiments:
 
-1. **Experiment 1 — Supervised Learning (Custom CNNs):** Three custom CNN architectures (Baseline, Deep, Wide) with varying depths and hyperparameters (`first_exp.py`).
-2. **Experiment 2 — Unsupervised Learning (Autoencoder + Transfer):** A convolutional autoencoder is trained unsupervised; its encoder is transferred to a supervised classifier (`second_exp.py`).
-3. **Experiment 3 — SOTA Models (ResNet50):** ResNet50 trained both from scratch and with ImageNet transfer learning (`third_exp.py`).
+1. **Experiment 1 - Supervised Learning (Custom CNNs):** Three different custom CNN models (Baseline, Deep, Wide) of different depths and hyperparameters (`first_exp.py`).
+2. **Experiment 2 - Unsupervised Learning (Autoencoder + Transfer): Convolutional autoencoder is trained unsupervised; its encoder is transferred to a supervised classifier (`second_exp.py`).
+3. **Experiment 3 - SOTA models (ResNet50):** ResNet50 (trained) from scratch and using ImageNet transfer learning (`third_exp.py).
 
-A **FastAPI backend** (`app.py`) serves all 6 trained models, metrics, and real-time predictions via REST API.
+A FastAPI backend (`app.py`) is used to provide all 6 trained models, metrics and real-time predictions through a REST API.
 
 ## Dataset
 
@@ -37,9 +37,9 @@ A **FastAPI backend** (`app.py`) serves all 6 trained models, metrics, and real-
 ### How to Download the Dataset
 
 1. Go to https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
-2. Click **Download** (requires a free Kaggle account)
-3. Extract the downloaded `archive.zip`
-4. Place the extracted folder so the structure is:
+2. Click on **Download** (need a free Kaggle account)
+3. Unzip downloaded archive.zip.
+4. Put the extracted folder in such a way that the structure is:
    ```
    Final_GroupProject_DeepLearning_COMP263_001_backend/
    └── archive/
@@ -59,16 +59,16 @@ A **FastAPI backend** (`app.py`) serves all 6 trained models, metrics, and real-
 
 ## External Libraries / Dependencies
 
-| Library | Purpose |
-|---------|--------|
-| tensorflow | Deep learning framework (model building, training, inference) |
-| numpy | Numerical array operations |
-| fastapi | REST API framework for serving models |
-| uvicorn[standard] | ASGI server for FastAPI |
-| python-multipart | Handling file uploads in FastAPI |
-| Pillow | Image loading and preprocessing |
-| scikit-learn | Evaluation metrics (precision, recall, F1, confusion matrix) |
-| matplotlib | Generating training/validation plots |
+|   Library         |                          Purpose                              |
+|-------------------|---------------------------------------------------------------|
+| tensorflow        | Deep learning framework (model building, training, inference) |
+| numpy             | Numerical array operations                                    |
+| fastapi           | REST API framework for serving models                         |
+| uvicorn[standard] | ASGI server for FastAPI                                       |
+| python-multipart  | Handling file uploads in FastAPI                              |
+| Pillow            | Image loading and preprocessing                               |
+| scikit-learn      | Evaluation metrics (precision, recall, F1, confusion matrix)  |
+| matplotlib        | Generating training/validation plots                          |
 
 All dependencies are listed in `requirements.txt`.
 
@@ -112,11 +112,12 @@ pip install scikit-learn matplotlib
 
 ### Step 5: Download and Place the Dataset
 
-Follow the dataset instructions above. The `archive/chest_xray/` folder must be inside this backend directory.
+Follow the dataset instructions above. The folder of this backend should be the parent directory of the `archive/chest xray/`.
 
 ### Step 6: Run the Training Experiments (Optional)
 
-If trained model files already exist in `results_xray/`, training is skipped automatically. To retrain, delete the `.keras` files and run:
+In case there are available trained model files in results xray/ then training is automatically bypassed. To retrain, remove the files in the folder called .keras and run:
+
 
 ```bash
 python first_exp.py
@@ -165,14 +166,14 @@ Final_GroupProject_DeepLearning_COMP263_001_backend/
 
 ## Trained Models (6 Total)
 
-| # | Model Name | Experiment | File |
-|---|-----------|-----------|------|
-| 1 | Baseline CNN | Exp 1 — Supervised | `results_xray/exp1_custom_cnn/exp1_mri_baseline_cnn.keras` |
-| 2 | Deep CNN | Exp 1 — Supervised | `results_xray/exp1_custom_cnn/exp1_mri_deep_cnn.keras` |
-| 3 | Wide CNN | Exp 1 — Supervised | `results_xray/exp1_custom_cnn/exp1_mri_wide_cnn.keras` |
-| 4 | Autoencoder Transfer | Exp 2 — Unsupervised | `results_xray/exp2_autoencoder/exp2_xray_transfer.keras` |
-| 5 | ResNet50 Transfer | Exp 3 — SOTA | `results_xray/exp3_xray_resnet_transfer.keras` |
-| 6 | ResNet50 From-Scratch | Exp 3 — SOTA | `results_xray/exp3_xray_resnet_scratch_FIXED.keras` |
+| # |      Model Name       |      Experiment      |                            File                            |
+|---|-----------------------|----------------------|------------------------------------------------------------|
+| 1 | Baseline CNN          | Exp 1 — Supervised   | `results_xray/exp1_custom_cnn/exp1_mri_baseline_cnn.keras` |
+| 2 | Deep CNN              | Exp 1 — Supervised   | `results_xray/exp1_custom_cnn/exp1_mri_deep_cnn.keras`     |
+| 3 | Wide CNN              | Exp 1 — Supervised   | `results_xray/exp1_custom_cnn/exp1_mri_wide_cnn.keras`     |
+| 4 | Autoencoder Transfer  | Exp 2 — Unsupervised | `results_xray/exp2_autoencoder/exp2_xray_transfer.keras`   |
+| 5 | ResNet50 Transfer     | Exp 3 — SOTA         | `results_xray/exp3_xray_resnet_transfer.keras`             |
+| 6 | ResNet50 From-Scratch | Exp 3 — SOTA         | `results_xray/exp3_xray_resnet_scratch_FIXED.keras`        |
 
 ## Frontend Setup
 ---
@@ -188,13 +189,13 @@ React single-page application for interacting with the trained deep learning mod
 
 ## External Libraries / Dependencies
 
-| Library | Purpose |
-|---------|--------|
-| react 18 | UI component framework |
-| react-dom 18 | React DOM renderer |
-| vite 5 | Development server and build tool |
-| @vitejs/plugin-react 4 | Vite plugin for React JSX/HMR |
-| eslint 9 | Code linting |
+|         Library        |              Purpose              |
+|------------------------|-----------------------------------|
+| react 18               | UI component framework            |
+| react-dom 18           | React DOM renderer                |
+| vite 5                 | Development server and build tool |
+| @vitejs/plugin-react 4 | Vite plugin for React JSX/HMR     |
+| eslint 9               | Code linting                      |
 
 All dependencies are listed in `package.json`.
 
@@ -230,13 +231,37 @@ npm run dev
 
 Opens at **http://localhost:5173** in your browser.
 
+### Sample Test Images (Provided)
+
+The frontend includes a built-in sample image testing section under the prediction area.
+
+Place your sample files in:
+
+```
+Final_GroupProject_DeepLearning_COMP263_001_frontend/
+└── public/
+    └── examples/
+        └── test/
+            ├── NORMAL/
+            └── PNEUMONIA/
+```
+
+Notes:
+
+- The app automatically loads images from both folders.
+- It uses the first 2 images from `NORMAL/` and first 2 images from `PNEUMONIA/` (sorted by filename).
+- You can change filenames anytime; no code change is needed.
+- If you add/remove/rename sample images while `npm run dev` is running, restart the frontend dev server once.
+
 ### Step 5: Using the Application
 
-1. **Select a Model** — Click one of the 6 model cards (Baseline CNN, Deep CNN, Wide CNN, Autoencoder Transfer, ResNet50 Transfer, ResNet50 From-Scratch). The selected card highlights with a pink border.
+1. **Select a Model** — Click one of the 6 model cards (Baseline CNN, Deep CNN, Wide CNN, Autoencoder Transfer, ResNet50 Transfer, ResNet50 From-Scratch).
 2. **View Metrics** — After selecting a model, the 4 gauge rings animate to show Accuracy, Precision, Recall, and F1-Score from the test set.
-3. **Upload an Image** — Drag and drop a chest X-ray image onto the upload area, or click to browse files.
-4. **Predict** — Click the **Predict** button. The app sends the image to the backend and displays the predicted class (Normal or Pneumonia), confidence percentage, and probability bars.
-5. **Clear** — Click **Clear** to reset the image and result.
+3. **Option A: Upload Your Own Image** — Drag and drop a chest X-ray image onto the upload area, or click to browse files.
+4. **Option B: Use Sample Images** — Click one of the sample cards (Example 1–4) shown below the upload area. The UI displays the expected label (NORMAL or PNEUMONIA).
+5. **Predict** — Click **Predict**. The app sends the image to the backend and shows predicted class, confidence, and class probabilities.
+6. **Compare Result** — For sample images, compare prediction with the displayed ground-truth label.
+7. **Clear** — Click **Clear** to reset selected image and prediction result.
 
 ## Project Structure
 
@@ -253,10 +278,12 @@ Final_GroupProject_DeepLearning_COMP263_001_frontend/
 │   ├── App.css             # Application styles
 │   ├── index.css           # Global styles and CSS variables
 │   └── components/
-│       ├── ModelSelector.jsx   # Model card grid with icons
+│       ├── ModelSelector.jsx   # Model card grid
 │       ├── MetricsPanel.jsx    # 4 metric gauge displays
 │       ├── Gauge.jsx           # SVG ring gauge component
-│       └── PredictPanel.jsx    # Image upload, predict button, results
+│       └── PredictPanel.jsx    # Image upload, sample cards, predict button, results
+└── public/
+    └── examples/test/          # User-provided sample images (NORMAL, PNEUMONIA)
 ```
 
 ## Build for Production
@@ -264,5 +291,3 @@ Final_GroupProject_DeepLearning_COMP263_001_frontend/
 ```bash
 npm run build
 ```
-
-Output is generated in the `dist/` folder.
