@@ -28,5 +28,10 @@ Thumbs.db
 *.suo
 *.sw?
 
+# Environment variables (never commit secrets)
+.env
+.env.*
+!.env.example
+
 # Logs
 *.log
