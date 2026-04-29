@@ -17,8 +17,11 @@ env/
 Chest_X-Ray_Images_archive/
 archive/
 
-# Trained models (too large for GitHub)
-results_xray/
+# Trained models — Exp3 ResNet50 files are too large for GitHub (>100 MB each)
+# Exp1 and Exp2 models + all JSON metrics files ARE tracked (small enough)
+results_xray/exp3_xray_resnet_scratch.keras
+results_xray/exp3_xray_resnet_scratch_FIXED.keras
+results_xray/exp3_xray_resnet_transfer.keras
 
 # IDE / OS
 .vscode/
