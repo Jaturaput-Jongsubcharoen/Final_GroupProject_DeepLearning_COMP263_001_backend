@@ -8,9 +8,12 @@ import json
 import io
 import numpy as np
 import tensorflow as tf
+from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
+
+load_dotenv()
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -118,9 +121,11 @@ def _prepare_image(raw_bytes: bytes) -> np.ndarray:
 # ---------------------------------------------------------------------------
 app = FastAPI(title="Pneumonia Detection API")
 
+_cors_origins = [o.strip() for o in os.environ.get("CORS_ORIGINS", "*").split(",")]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_cors_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -185,4 +190,4 @@ async def predict(image: UploadFile = File(...), model_name: str = Form(...)):
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)), reload=True)

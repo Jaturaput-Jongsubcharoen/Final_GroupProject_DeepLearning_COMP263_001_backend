@@ -128,7 +128,7 @@ encoded_features = layers.Conv2D(256, (3, 3), activation='relu', padding='same')
 encoded_features = layers.BatchNormalization()(encoded_features)
 
 if os.path.exists(autoencoder_path):
-    print("🚀 Loaded pre-trained Autoencoder from disk.")
+    print(" Loaded pre-trained Autoencoder from disk.")
     autoencoder = tf.keras.models.load_model(autoencoder_path)
 else:
     print("Training Unsupervised Autoencoder on X-Rays...")
@@ -173,7 +173,7 @@ history_path = os.path.join(RESULTS_DIR, 'exp2_xray_history.json')
 train_supervised, val_supervised, test_supervised = create_supervised_datasets()
 
 if os.path.exists(transfer_path):
-    print("🚀 Loaded Transfer Learning Classifier from disk.")
+    print(" Loaded Transfer Learning Classifier from disk.")
     transfer_model = tf.keras.models.load_model(transfer_path)
     
     # Recreate test dataset for fresh evaluation
